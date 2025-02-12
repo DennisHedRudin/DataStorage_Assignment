@@ -1,4 +1,5 @@
-﻿using Data.Models.ProjectModel;
+﻿using Data.Interfaces.IServices;
+using Data.Models.ProjectModel;
 using Data.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,8 +15,20 @@ public class ProjectController(ProjectService projectService) : Controller
 
     public async Task<IActionResult> Create(ProjectRegistrationForm form)
     {
+        if (!ModelState.IsValid)
+            return BadRequest("Invalid form data.");
+
+        
+        var result = await _projectService.CreateProjectAsync(form);
+        return result ? Ok() : Problem();
 
     }
+
+    [HttpGet]
+
+    [HttpDelete]
+
+    [HttpPut]
 }
 
     

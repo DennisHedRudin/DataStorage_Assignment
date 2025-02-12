@@ -79,54 +79,13 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
         _dbset.Update(entity);
     }
 
-    //public virtual async Task<TEntity> UpdateOneAsync(Expression<Func<TEntity, bool>> expression, TEntity updatedEntity)
-    //{
-    //    if (updatedEntity == null)
-    //        return null!;
-
-    //    try
-    //    {
-    //        var existingEntity = await _dbset.FirstOrDefaultAsync(expression) ?? null!;
-    //        if (existingEntity == null)
-    //            return null!;
-
-    //        _context.Entry(existingEntity).CurrentValues.SetValues(updatedEntity);
-    //        await _context.SaveChangesAsync();
-    //        return updatedEntity;
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Debug.WriteLine($"Error creating {nameof(TEntity)} :: {ex.Message}");
-    //        return null!;
-    //    }
-
-    //}
-
+    
     public virtual void Delete(TEntity entity)
     {
         _dbset.Remove(entity);
     }
 
-    //public virtual async Task<bool> DeleteOneAsync(Expression<Func<TEntity, bool>> expression)
-    //{
-    //    if (expression == null)
-    //        return false;
-    //    try
-    //    {
-    //        var existingEntity = await _dbset.FirstOrDefaultAsync(expression) ?? null!;
-    //        if (existingEntity == null)
-    //            return false;
-
-    //        _dbset.Remove(existingEntity);
-    //        await _context.SaveChangesAsync();
-    //        return true;
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Debug.WriteLine($"Error deleting {nameof(TEntity)} :: {ex.Message}");
-    //        return false;
-    //    }
-    //}
+ 
 
     #endregion
 }

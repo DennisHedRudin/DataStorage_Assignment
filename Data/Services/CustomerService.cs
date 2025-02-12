@@ -3,14 +3,21 @@ using System.Linq.Expressions;
 using Data.Contexts;
 using Data.Entities;
 using Data.Interfaces.IServices;
+using Data.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 
 
 namespace Data.Services;
 
-public class CustomerService(DataContext context) : BaseService<CustomerEntity>(context), ICustomerService
+public class CustomerService(DataContext context) : ICustomerService
 {
+    private readonly IBaseRepository<CustomerEntity> _customerRepository;
+
+    public CustomerService(IBaseRepository<CustomerEntity> customerRepository)
+    {
+        _customerRepository = customerRepository;
+    }
 
     private readonly DataContext _context = context;
 

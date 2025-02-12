@@ -1,7 +1,8 @@
 ﻿using Data.Entities;
+using Data.Interfaces.Repositories;
 
 namespace Data.Interfaces.IServices;
 
-public interface IProductService : IBaseService<ProductEntity>
+public interface IProductService : IBaseRepository<ProductEntity>
 {
 }
