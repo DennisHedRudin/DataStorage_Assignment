@@ -3,6 +3,7 @@ using Data.Interfaces.Repositories;
 
 namespace Data.Interfaces.IServices;
 
-public interface ICustomerContactService : IBaseRepository<CustomerEntity>
+public interface ICustomerContactService : ICustomerContactRepository
 {
+
 }

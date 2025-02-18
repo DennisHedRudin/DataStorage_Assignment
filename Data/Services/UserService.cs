@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Services;
 
-public class UserService(DataContext context) : BaseService<UserEntity>(context), IUserService
+public class UserService(DataContext context) : IUserService
 {
 
     private readonly DataContext _context = context;
 
-    public override async Task<UserEntity?> GetOneAsync(Expression<Func<UserEntity, bool>> expression)
+    public async Task<UserEntity?> GetOneAsync(Expression<Func<UserEntity, bool>> expression)
     {
         var entity = await _context.Users
             .Include(x => x.roles)
@@ -20,7 +20,7 @@ public class UserService(DataContext context) : BaseService<UserEntity>(context)
         return entity;
     }
 
-    public override async Task<IEnumerable<UserEntity?>> GetAllAsync()
+    public async Task<IEnumerable<UserEntity?>> GetAllAsync()
     {
         var entities = await _context.Users
             .Include(x => x.roles)

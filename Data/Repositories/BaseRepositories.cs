@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics;
 using System.Linq.Expressions;
 using Data.Contexts;
 using Data.Interfaces.Repositories;
@@ -47,9 +48,20 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
     #region CRUD
 
     public virtual async Task AddAsync(TEntity entity)
-    {           
-       
-            await _dbset.AddAsync(entity);           
+    {
+        try
+        {
+            _dbset.Add(entity);
+            await _dbset.AddAsync(entity);
+            return true;
+        }
+        catch (Exception ex) 
+        {
+
+        Debug.WriteLine(ex);
+            return false;
+        }
+                  
        
 
     }

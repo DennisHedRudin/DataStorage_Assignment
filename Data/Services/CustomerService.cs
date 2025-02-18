@@ -4,24 +4,19 @@ using Data.Contexts;
 using Data.Entities;
 using Data.Interfaces.IServices;
 using Data.Interfaces.Repositories;
+using Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 
 
 namespace Data.Services;
 
-public class CustomerService(DataContext context) : ICustomerService
+public class CustomerService(DataContext context, CustomerRepository customerRepository) 
 {
-    private readonly IBaseRepository<CustomerEntity> _customerRepository;
-
-    public CustomerService(IBaseRepository<CustomerEntity> customerRepository)
-    {
-        _customerRepository = customerRepository;
-    }
-
+    private readonly CustomerRepository _customerRepository = customerRepository;
     private readonly DataContext _context = context;
 
-    public override async Task<CustomerEntity?> GetOneAsync(Expression<Func<CustomerEntity, bool>> expression)
+    public async Task<CustomerEntity?> GetOneAsync(Expression<Func<CustomerEntity, bool>> expression)
     {
         var entity = await _context.Customer
             .Include(x => x.CustomerContacts)
@@ -30,7 +25,7 @@ public class CustomerService(DataContext context) : ICustomerService
         return entity;
     }
 
-    public override async Task<IEnumerable<CustomerEntity?>> GetAllAsync()
+    public async Task<IEnumerable<CustomerEntity?>> GetAllAsync()
     {
         var entities = await _context.Customer
             .Include(x => x.CustomerContacts)
