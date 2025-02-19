@@ -1,0 +1,53 @@
+import axios from "axios";
+
+// Bas-URL för API (ändra till din API-URL)
+const API_URL = "https://localhost:7120/api/project";
+
+// Hämta alla projekt
+export const getAllProjects = async () => {
+  try {
+    const response = await axios.get(API_URL);
+    return response.data; // Returnera listan av projekt
+  } catch (error) {
+    console.error("Error fetching projects", error);
+    throw error;
+  }
+};
+
+export const getProjectById = async (id) => {
+    const response = await fetch(`/api/projects/${id}`);
+    const data = await response.json();
+    return data;
+  };
+
+// Skapa ett nytt projekt
+export const createProject = async (projectData) => {
+  try {
+    const response = await axios.post(API_URL, projectData);
+    return response.data; // Returnera det skapade projektet
+  } catch (error) {
+    console.error("Error creating project", error);
+    throw error;
+  }
+};
+
+// Uppdatera ett befintligt projekt
+export const updateProject = async (id, projectData) => {
+  try {
+    const response = await axios.put(`${API_URL}/${id}`, projectData);
+    return response.data; // Returnera det uppdaterade projektet
+  } catch (error) {
+    console.error("Error updating project", error);
+    throw error;
+  }
+};
+
+// Ta bort ett projekt
+export const deleteProject = async (id) => {
+  try {
+    await axios.delete(`${API_URL}/${id}`);
+  } catch (error) {
+    console.error("Error deleting project", error);
+    throw error;
+  }
+};

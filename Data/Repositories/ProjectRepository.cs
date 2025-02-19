@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Diagnostics;
+using System.Linq.Expressions;
 using Data.Contexts;
 using Data.Entities;
 using Data.Interfaces.Repositories;
@@ -13,10 +14,10 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
     public override async Task<ProjectEntity?> GetOneAsync(Expression<Func<ProjectEntity, bool>> expression)
     {
         var entity = await _context.Projects
-            .Include(x => x.CustomerId)
-            .Include(x => x.StatusId)
-            .Include(x => x.UserId) 
-            .Include(x => x.ProductId)            
+            .Include(x => x.Customer)
+            .Include(x => x.Status)
+            .Include(x => x.User) 
+            .Include(x => x.Product)            
             .FirstOrDefaultAsync(expression);
 
         return entity;
@@ -24,14 +25,24 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
 
     public override async Task<IEnumerable<ProjectEntity?>> GetAllAsync()
     {
-        var entities = await _context.Projects
-            .Include(x => x.CustomerId)
-            .Include(x => x.StatusId)
-            .Include(x => x.UserId)
-            .Include(x => x.ProductId)
-            .ToListAsync();
+        try
+        {
+            var entities = await _context.Projects
+           .Include(x => x.Customer)
+           .Include(x => x.Status)
+           .Include(x => x.User)
+           .Include(x => x.Product)
+           .ToListAsync();
 
-        return entities;
+            return entities;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error retrieving projects :: {ex.Message}");
+            return null!;
+        }     
+
+        
 
 
     }

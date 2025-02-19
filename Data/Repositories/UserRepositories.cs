@@ -14,7 +14,7 @@ public class UserRepositories(DataContext context) : BaseRepository<UserEntity>(
     public override async Task<UserEntity?> GetOneAsync(Expression<Func<UserEntity, bool>> expression)
     {
         var entity = await _context.Users
-            .Include(x => x.roles)
+            .Include(x => x.Roles)
             .FirstOrDefaultAsync(expression);
 
         return entity;
@@ -23,7 +23,7 @@ public class UserRepositories(DataContext context) : BaseRepository<UserEntity>(
     public override async Task<IEnumerable<UserEntity?>> GetAllAsync()
     {
         var entities = await _context.Users
-            .Include(x => x.roles)
+            .Include(x => x.Roles)
             .ToListAsync();
 
         return entities;

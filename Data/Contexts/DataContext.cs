@@ -24,7 +24,7 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
              .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<UserEntity>()
-            .HasOne(u => u.roles)
+            .HasOne(u => u.Roles)
             .WithMany()
             .HasForeignKey(u => u.RolesId)
             .OnDelete(DeleteBehavior.Restrict);

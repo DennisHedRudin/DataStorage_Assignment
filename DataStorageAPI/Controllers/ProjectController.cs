@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DataStorageAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/project")]
 [ApiController]
 public class ProjectController(ProjectService projectService) : Controller
 {
@@ -28,7 +28,7 @@ public class ProjectController(ProjectService projectService) : Controller
     }
 
     
-    [HttpGet("{id}")]
+    [HttpGet]
     public async Task<IActionResult> GetAll()
     {
         var project = await _projectService.GetAllAsync();
