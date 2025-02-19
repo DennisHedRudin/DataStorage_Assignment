@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(""));
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Projects\\Data\\Local_Database.mdf;Integrated Security=True;Connect Timeout=30"));
 builder.Services.AddScoped<ProjectRepository>();
 builder.Services.AddScoped<ProjectService>();
 builder.Services.AddScoped<CustomerContactRepository>();
