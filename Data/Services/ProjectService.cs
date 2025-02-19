@@ -16,24 +16,24 @@ public class ProjectService(ProjectRepository projectRepository, DataContext _co
 {
     private readonly ProjectRepository _projectRepository = projectRepository;
 
-    public async Task<ResponseResult<ProjectEntity>> CreateProjectAsync(ProjectRegistrationForm form)
+    public async Task<bool> CreateProjectAsync(ProjectRegistrationForm form)
     {
         await _projectRepository.BeginTransactionAsync();
 
         if (form == null)
-            return new ResponseResult<ProjectEntity>(false, 400, "Form is null", null);
+            return false;
 
         try
         {
-            
+
             var projectEntity = await _projectRepository.GetOneAsync(x => x.Title == form.Title);
             if (projectEntity != null)
-                return new ResponseResult<ProjectEntity>(false, 409, "Project already exists.", null);
+                return false;
 
-            
+
             projectEntity = ProjectFactory.Create(form);
 
-            
+
             await _projectRepository.AddAsync(projectEntity);
             await _projectRepository.SaveAsync();
 
@@ -43,21 +43,22 @@ public class ProjectService(ProjectRepository projectRepository, DataContext _co
 
             if (projectEntity != null)
             {
-                
-                return new ResponseResult<ProjectEntity>(true, 201, "Project created successfully", projectEntity);
+
+                return true;
             }
             else
             {
-                
-                return new ResponseResult<ProjectEntity>(false, 500, "Something went wrong", null);
+
+                return false;
             }
-            
+
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             await _projectRepository.RollBackTransactionAsync();
-            return new ResponseResult<ProjectEntity>(false, 500, "An error occurred: " + ex.Message, null);
+            return false;
         }
+        
     }
 
     public virtual async Task<ProjectEntity?> UpdateOneAsync(Expression<Func<ProjectEntity, bool>> expression, ProjectEntity updatedEntity)
@@ -100,7 +101,7 @@ public class ProjectService(ProjectRepository projectRepository, DataContext _co
             if (existingEntity == null)
                 return false;
 
-            _projectRepository.Delete(existingEntity);
+            await _projectRepository.Delete(existingEntity);
             
             await _projectRepository.SaveAsync();
             await _projectRepository.CommitTransactionAsync();

@@ -16,22 +16,14 @@ public class ProjectController(ProjectService projectService) : Controller
 
     [HttpPost]
 
-    public async Task<IActionResult> Create(ProjectRegistrationForm form)
+    public async Task<bool> Create(ProjectRegistrationForm form)
     {
         if (!ModelState.IsValid)
-            return BadRequest("Invalid form data.");
+            return false;
 
         
         var result = await _projectService.CreateProjectAsync(form);
-        return result.StatusCode switch
-        {
-            200 => Ok(),
-            201 => Created("", result.Result),
-            400 => BadRequest(result.ErrorMessage),
-            409 => Conflict(result.ErrorMessage),
-            500 => Problem(result.ErrorMessage),
-            _ => Problem("Something went wrong!"),
-        };
+        return true;
 
     }
 

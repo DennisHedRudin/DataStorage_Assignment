@@ -13,6 +13,8 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
     public DbSet<StatusTypeEntity> StatusTypes { get; set; }
     public DbSet<UserEntity> Users { get; set; }
 
+    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<CustomerEntity>()

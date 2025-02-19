@@ -1,12 +1,11 @@
 ﻿using Data.Contexts;
-using Data.Entities;
-using Data.Interfaces.IServices;
+using Data.Repositories;
 
 namespace Data.Services;
 
-public class RolesService(DataContext context) : BaseService<RolesEntity>(context), IRolesService
+public class RolesService(RolesRepository rolesRepository, DataContext context)
 {
-
+    private readonly RolesRepository _rolesRepository = rolesRepository;
     private readonly DataContext _context = context;
 
 

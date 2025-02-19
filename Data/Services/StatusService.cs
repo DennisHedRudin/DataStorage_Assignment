@@ -1,13 +1,12 @@
 ﻿
 using Data.Contexts;
-using Data.Entities;
-using Data.Interfaces.IServices;
+using Data.Repositories;
 
 namespace Data.Services;
 
-public class StatusService(DataContext context) : BaseService<StatusTypeEntity>(context), IStatusService
+public class StatusService(StatusRepository statusRepository, DataContext context)
 {
-
+    private readonly StatusRepository _projectRepository = statusRepository;
     private readonly DataContext _context = context;
 
 

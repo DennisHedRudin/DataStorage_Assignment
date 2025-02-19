@@ -10,6 +10,7 @@ namespace Data.Services;
 public class CustomerContactService(CustomerContactRepository repository, DataContext context )
 {
     private readonly CustomerContactRepository _repository = repository;
+    private readonly DataContext _context= context;
 
 }
 

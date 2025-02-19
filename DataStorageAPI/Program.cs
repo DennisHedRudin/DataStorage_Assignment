@@ -1,6 +1,4 @@
 using Data.Contexts;
-using Data.Interfaces.IServices;
-using Data.Interfaces.Repositories;
 using Data.Repositories;
 using Data.Services;
 using Microsoft.EntityFrameworkCore;
@@ -12,20 +10,20 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(""));
-builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<ICustomerContactRepository, CustomerContactRepository>();
-builder.Services.AddScoped<ICustomerContactService, CustomerContactService>();
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IRolesRepository, RolesRepository>();
-builder.Services.AddScoped<IRolesRepository, RolesRepository>();
-builder.Services.AddScoped<IRolesService, RolesService>();
-builder.Services.AddScoped<IStatusRepository, StatusRepository>();
-builder.Services.AddScoped<IStatusService, StatusService>();
-builder.Services.AddScoped<IUserRepository, UserRepositories>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ProjectRepository>();
+builder.Services.AddScoped<ProjectService>();
+builder.Services.AddScoped<CustomerContactRepository>();
+builder.Services.AddScoped<CustomerContactService>();
+builder.Services.AddScoped<CustomerRepository>();
+builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<RolesRepository>();
+builder.Services.AddScoped<RolesService>();
+builder.Services.AddScoped<StatusRepository>();
+builder.Services.AddScoped<StatusService>();
+builder.Services.AddScoped<UserRepositories>();
+builder.Services.AddScoped<UserService>();
 
 
 var app = builder.Build();

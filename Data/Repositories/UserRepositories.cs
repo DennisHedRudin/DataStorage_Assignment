@@ -9,7 +9,7 @@ namespace Data.Repositories;
 public class UserRepositories(DataContext context) : BaseRepository<UserEntity>(context), IUserRepository
 {
 
-    private readonly DataContext _context = context;
+    private new readonly DataContext _context = context;
 
     public override async Task<UserEntity?> GetOneAsync(Expression<Func<UserEntity, bool>> expression)
     {

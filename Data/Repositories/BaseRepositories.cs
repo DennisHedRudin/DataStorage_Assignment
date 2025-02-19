@@ -11,7 +11,7 @@ namespace Data.Repositories;
 public abstract class BaseRepository<TEntity>(DataContext context) : IBaseRepository<TEntity> where TEntity : class
 {
     protected readonly DataContext _context = context;
-    private readonly DbSet<TEntity> _dbset = context.Set<TEntity>();
+    protected readonly DbSet<TEntity> _dbset = context.Set<TEntity>();
     private IDbContextTransaction _transaction = null!;
 
     #region Transaction Management
@@ -47,7 +47,7 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
 
     #region CRUD
 
-    public virtual async Task AddAsync(TEntity entity)
+    public virtual async Task<bool> AddAsync(TEntity entity)
     {
         try
         {
@@ -86,15 +86,39 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
         return entities;
     }
 
-    public virtual void Update(TEntity entity)
+    public virtual async Task<bool> Update(TEntity entity)
     {
-        _dbset.Update(entity);
+        try
+        {
+            _dbset.Update(entity);
+            await _dbset.AddAsync(entity);
+            return true;
+        }
+        catch (Exception ex)
+        {
+
+            Debug.WriteLine(ex);
+            return false;
+        }
+        
     }
 
     
-    public virtual void Delete(TEntity entity)
+    public virtual async Task<bool> Delete(TEntity entity)
     {
-        _dbset.Remove(entity);
+        try
+        {
+            _dbset.Remove(entity);
+            await _dbset.AddAsync(entity);
+            return true;
+        }
+        catch (Exception ex)
+        {
+
+            Debug.WriteLine(ex);
+            return false;
+        }
+        
     }
 
  

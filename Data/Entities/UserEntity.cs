@@ -12,6 +12,6 @@ public class UserEntity
     public string Email { get; set; } = null!;
 
     public int RolesId { get; set; }
-    public RolesEntity roles { get; set; } = null!;
+    public RolesEntity Roles { get; set; } = null!;
 
 }
