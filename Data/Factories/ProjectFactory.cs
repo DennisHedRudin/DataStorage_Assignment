@@ -16,6 +16,17 @@ public class ProjectFactory
         };
     }
 
+    public static ProjectEntity Update(ProjectEntity existingEntity, ProjectUpdateForm form)
+    {
+        
+        existingEntity.Title = form.Title;
+        existingEntity.Description = form.Description;
+        existingEntity.StartDate = form.StartDate;
+        existingEntity.EndDate = form.EndDate;
+
+        return existingEntity;
+    }
+
     public static Project Create(ProjectEntity entity)
     {
         return new Project

@@ -14,10 +14,10 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
     public override async Task<ProjectEntity?> GetOneAsync(Expression<Func<ProjectEntity, bool>> expression)
     {
         var entity = await _context.Projects
-            .Include(x => x.Customer)
-            .Include(x => x.Status)
-            .Include(x => x.User) 
-            .Include(x => x.Product)            
+            .Include(x => x.Customer)            
+            .Include(x => x.Status)            
+            .Include(x => x.User)             
+            .Include(x => x.Product)                       
             .FirstOrDefaultAsync(expression);
 
         return entity;
@@ -28,12 +28,14 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
         try
         {
             var entities = await _context.Projects
-           .Include(x => x.Customer)
-           .Include(x => x.Status)
-           .Include(x => x.User)
-           .Include(x => x.Product)
-           .ToListAsync();
+            .Include(x => x.Customer)            
+            .Include(x => x.Status)            
+            .Include(x => x.User)            
+            .Include(x => x.Product)
+            
+            .ToListAsync();
 
+            Debug.WriteLine($"Retrieved {entities.Count} projects");
             return entities;
         }
         catch (Exception ex)

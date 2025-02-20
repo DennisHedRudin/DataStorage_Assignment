@@ -7,7 +7,7 @@ const API_URL = "https://localhost:7120/api/project";
 export const getAllProjects = async () => {
   try {
     const response = await axios.get(API_URL);
-    return response.data; // Returnera listan av projekt
+    return response.data.result; // Returnera listan av projekt
   } catch (error) {
     console.error("Error fetching projects", error);
     throw error;

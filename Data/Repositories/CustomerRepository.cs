@@ -16,6 +16,7 @@ public class CustomerRepository(DataContext context) : BaseRepository<CustomerEn
     {
         var entity = await _context.Customer
             .Include(x => x.CustomerContacts)
+            .ThenInclude(x => x.FirstName)
             .FirstOrDefaultAsync(expression);
 
         return entity;
@@ -25,6 +26,7 @@ public class CustomerRepository(DataContext context) : BaseRepository<CustomerEn
     {
         var entities = await _context.Customer
             .Include(x => x.CustomerContacts)
+            .ThenInclude(x => x.FirstName)
             .ToListAsync();
 
             return entities;           

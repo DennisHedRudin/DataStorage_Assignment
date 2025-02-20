@@ -36,7 +36,7 @@ const ProjectListPage = () => {
               <td>{project.title}</td>
               <td>{project.startDate}</td>
               <td>{project.endDate}</td>
-              <td>{project.status || "N/A"}</td> {/* Visa status om det finns */}
+              <td>{project.status?.statusName || "N/A"}</td>
               <td>
                 <button>Edit</button>
                 <button>Delete</button>

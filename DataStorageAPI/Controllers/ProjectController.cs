@@ -38,13 +38,14 @@ public class ProjectController(ProjectService projectService) : Controller
             return NotFound(new ResponseResult<ProjectEntity>(false, 404, "Project not found", null));
         }
 
-        return Ok(project.Result);
+        return Ok(new ResponseResult<object>(true, 200, "Project found successfully", project));
     }
 
     
     [HttpDelete("{id}")]
     public async Task<ActionResult<ResponseResult<object>>> DeleteProject(int id)
     {
+        Console.WriteLine($"Deleting project with ID: {id}");
         var success = await _projectService.DeleteOneAsync(x => x.Id == id);
 
         if (!success)
@@ -57,7 +58,7 @@ public class ProjectController(ProjectService projectService) : Controller
 
     
     [HttpPut("{id}")]
-    public async Task<ActionResult<ResponseResult<ProjectEntity>>> UpdateProject(int id, ProjectRegistrationForm form)
+    public async Task<ActionResult<ResponseResult<ProjectEntity>>> UpdateProject(int id, ProjectUpdateForm form)
     {
         var existingProject = await _projectService.GetProjectAsync(id);
 
@@ -65,8 +66,13 @@ public class ProjectController(ProjectService projectService) : Controller
         {
             return NotFound(new ResponseResult<ProjectEntity>(false, 404, "Project not found", null));
         }
-        
-        var updatedProject = await _projectService.UpdateOneAsync(x => x.Id == id, ProjectFactory.Create(form));
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(new ResponseResult<ProjectEntity>(false, 400, "Invalid data", null));
+        }
+
+        var updatedProject = await _projectService.UpdateOneAsync(x => x.Id == id, form);
 
         if (updatedProject == null)
         {

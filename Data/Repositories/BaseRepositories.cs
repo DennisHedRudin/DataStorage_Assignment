@@ -91,7 +91,7 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
         try
         {
             _dbset.Update(entity);
-            await _dbset.AddAsync(entity);
+            await _context.SaveChangesAsync();
             return true;
         }
         catch (Exception ex)
@@ -109,7 +109,7 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
         try
         {
             _dbset.Remove(entity);
-            await _dbset.AddAsync(entity);
+            await _context.SaveChangesAsync();
             return true;
         }
         catch (Exception ex)

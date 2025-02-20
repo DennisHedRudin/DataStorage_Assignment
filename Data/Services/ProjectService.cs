@@ -61,24 +61,30 @@ public class ProjectService(ProjectRepository projectRepository, DataContext _co
         
     }
 
-    public virtual async Task<ProjectEntity?> UpdateOneAsync(Expression<Func<ProjectEntity, bool>> expression, ProjectEntity updatedEntity)
+    public virtual async Task<ProjectEntity?> UpdateOneAsync(Expression<Func<ProjectEntity, bool>> expression, ProjectUpdateForm form)
     {
         await _projectRepository.BeginTransactionAsync();
-        if (updatedEntity == null)
+
+        if (form == null)
             return null!;
 
         try
         {
-            var existingEntity = await _projectRepository.GetOneAsync(expression) ?? null;
+            
+            var existingEntity = await _projectRepository.GetOneAsync(expression);
             if (existingEntity == null)
-                return null!;
+                return null;
 
-            _context.Entry(existingEntity).CurrentValues.SetValues(updatedEntity);
 
-            await _projectRepository.AddAsync(updatedEntity);
-            await _projectRepository.SaveAsync();
+            var updatedEntity = ProjectFactory.Update(existingEntity, form);
+
+            
+            
+            await _projectRepository.Update(updatedEntity);
+            await _context.SaveChangesAsync();
             await _projectRepository.CommitTransactionAsync();
-            return existingEntity;
+
+            return updatedEntity;
         }
         catch (Exception ex)
         {
@@ -118,16 +124,16 @@ public class ProjectService(ProjectRepository projectRepository, DataContext _co
 
     }
 
-    public async Task<ResponseResult<ProjectEntity?>> GetProjectAsync(int id)
+    public async Task<ProjectEntity?> GetProjectAsync(int id)
     {
         var entity = await _projectRepository.GetOneAsync(x => x.Id == id);
-        return new ResponseResult<ProjectEntity?>(true, 201, "Project created successfully", entity);
+        return entity;
     }
 
-    public async Task<ResponseResult<IEnumerable<ProjectEntity?>>> GetAllAsync()
+    public async Task<IEnumerable<ProjectEntity?>> GetAllAsync()
     {
-        var entities = await _projectRepository.GetAllAsync();        
-        return new ResponseResult<IEnumerable<ProjectEntity?>>(true, 200, null, entities);
+        var entities = await _projectRepository.GetAllAsync();
+        return entities;
     }
 
 
