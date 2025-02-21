@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getProjectById, updateProject, getCustomers, getProducts, getUsers, getStatuses } from "../services/projectService";
 import { useParams, useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const EditProjectPage = () => {
   const [project, setProject] = useState(null);
@@ -57,7 +58,7 @@ const EditProjectPage = () => {
     e.preventDefault();
 
     const updatedProject = {
-      title: project.title,  // Vi använder den oförändrade titeln här
+      title: project.title, // Vi använder den oförändrade titeln här
       description: project.description,
       startDate: project.startDate,
       endDate: project.endDate,
@@ -83,18 +84,22 @@ const EditProjectPage = () => {
     <div>
       <h1>Edit Project</h1>
       <form onSubmit={handleUpdate}>
-        {/* Visa titeln som en statisk text (h4) */}
+        {/* Gör titelfältet redigerbart och krävs */}
         <label>
           Project Title:
-          <h4>{project.title}</h4>  {/* Här visas titeln som statisk text */}
+          <input
+            type="text"
+            value={project.title}
+            onChange={(e) => setProject({ ...project, title: e.target.value })}
+            required  // Gör titeln required
+          />
         </label>
 
         <label>
           Description:
           <textarea
             value={project.description}
-            onChange={(e) => setProject({ ...project, description: e.target.value })}
-            required
+            onChange={(e) => setProject({ ...project, description: e.target.value })}            
           />
         </label>
 
@@ -184,6 +189,13 @@ const EditProjectPage = () => {
 
         <button type="submit">Update Project</button>
       </form>
+
+      <button>
+                    <Link to={"/"}>Home Page</Link>
+      </button>  
+      <button>
+                    <Link to="/projects">View Projects</Link>
+      </button> 
     </div>
   );
 };

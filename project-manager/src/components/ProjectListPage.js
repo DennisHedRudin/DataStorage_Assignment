@@ -70,6 +70,9 @@ const ProjectListPage = () => {
           ))}
         </tbody>
       </table>
+      <button>
+                          <Link to={"/"}>Home Page</Link>
+        </button> 
     </div>
   );
 };

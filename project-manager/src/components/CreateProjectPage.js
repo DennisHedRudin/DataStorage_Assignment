@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createProject, getCustomers, getProducts, getUsers, getStatuses } from "../services/projectService"; // Lägg till funktioner för att hämta data
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const CreateProjectPage = () => {
     const [title, setTitle] = useState("");
@@ -174,7 +175,11 @@ const CreateProjectPage = () => {
         
 
         <button onClick={handleCreate} type="submit">Create Project</button>
+      
       </form>
+      <button>
+                    <Link to={"/"}>Home Page</Link>
+      </button> 
     </div>
   );
 };
