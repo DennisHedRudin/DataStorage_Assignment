@@ -3,12 +3,9 @@ using System.Linq.Expressions;
 using Data.Contexts;
 using Data.Entities;
 using Data.Factories;
-using Data.Interfaces.Repositories;
 using Data.Models.ProjectModel;
-using Data.Models.UserModel;
 using Data.Repositories;
-using Infrastructure.Models;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Data.Services;
 

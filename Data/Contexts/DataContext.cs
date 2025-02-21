@@ -18,9 +18,9 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<CustomerEntity>()
-            .HasMany(c => c.CustomerContacts)        
-            .WithOne(cc => cc.Customer)             
-            .HasForeignKey(cc => cc.CustomerId)
+            .HasOne(x => x.Contact)
+            .WithMany()
+            .HasForeignKey(x => x.CustomerContactId)
              .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<UserEntity>()

@@ -13,6 +13,10 @@ public class ProjectFactory
             Description = form.Description,
             StartDate = form.StartDate,
             EndDate = form.EndDate,
+            CustomerId = form.CustomerId,
+            StatusId = form.StatusId,
+            UserId = form.UserId,
+            ProductId = form.ProductId,
         };
     }
 

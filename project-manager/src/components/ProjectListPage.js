@@ -1,21 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { getAllProjects } from "../services/projectService";
+import { Link } from 'react-router-dom';
+import { getAllProjects, deleteProject } from "../services/projectService";
 
 const ProjectListPage = () => {
   const [projects, setProjects] = useState([]);
 
+  
+  const handleDeleteProject = async (id) => {
+    try {
+      
+      await deleteProject(id);
+
+      
+      setProjects(projects.filter((project) => project.id !== id));
+    } catch (error) {
+      console.error("Error deleting project", error);
+    }
+  };
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const data = await getAllProjects(); // API-anrop för att hämta projekt
-        setProjects(data); // Sätt projekten i state
+        const data = await getAllProjects(); 
+        setProjects(data);
       } catch (error) {
         console.error("Error fetching projects", error);
       }
     };
 
     fetchProjects();
-  }, []);
+  }, []); 
 
   return (
     <div>
@@ -27,7 +41,10 @@ const ProjectListPage = () => {
             <th>Start Date</th>
             <th>End Date</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Customer</th>                      
+            <th>Employee</th>
           </tr>
         </thead>
         <tbody>
@@ -36,10 +53,18 @@ const ProjectListPage = () => {
               <td>{project.title}</td>
               <td>{project.startDate}</td>
               <td>{project.endDate}</td>
-              <td>{project.status?.statusName || "N/A"}</td>
+              <td>{project.status?.statusName || "N/A"}</td>              
+              <td>{project.product?.productName || "N/A"}</td>
+              <td>{project.product?.price || "N/A"}</td>
+              <td>{project.customer?.customerName || "N/A"}</td>
+              <td>{project.user?.firstName || "N/A"}</td>
               <td>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button>
+                    <Link to={`/projects/edit/${project.id}`}>Edit Project</Link>
+                </button>                
+                <button onClick={() => handleDeleteProject(project.id)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

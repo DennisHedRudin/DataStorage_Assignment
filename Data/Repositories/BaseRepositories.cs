@@ -50,8 +50,7 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
     public virtual async Task<bool> AddAsync(TEntity entity)
     {
         try
-        {
-            _dbset.Add(entity);
+        {            
             await _dbset.AddAsync(entity);
             return true;
         }

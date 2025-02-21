@@ -15,8 +15,7 @@ public class CustomerRepository(DataContext context) : BaseRepository<CustomerEn
     public override async Task<CustomerEntity?> GetOneAsync(Expression<Func<CustomerEntity, bool>> expression)
     {
         var entity = await _context.Customer
-            .Include(x => x.CustomerContacts)
-            .ThenInclude(x => x.FirstName)
+            .Include(x => x.Contact)            
             .FirstOrDefaultAsync(expression);
 
         return entity;
@@ -25,8 +24,7 @@ public class CustomerRepository(DataContext context) : BaseRepository<CustomerEn
     public override async Task<IEnumerable<CustomerEntity?>> GetAllAsync()
     {
         var entities = await _context.Customer
-            .Include(x => x.CustomerContacts)
-            .ThenInclude(x => x.FirstName)
+            .Include(x => x.Contact)            
             .ToListAsync();
 
             return entities;           

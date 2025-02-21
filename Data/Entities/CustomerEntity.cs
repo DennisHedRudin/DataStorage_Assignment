@@ -8,5 +8,5 @@ public class CustomerEntity
     public int Id { get; set; }
     public string CustomerName { get; set; } = null!;
     public int CustomerContactId { get; set; }
-    public ICollection<CustomerContactEntity> CustomerContacts { get; set; } = new List<CustomerContactEntity>();
+    public CustomerContactEntity Contact { get; set; } = null!;
 }

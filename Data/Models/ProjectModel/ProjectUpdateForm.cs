@@ -14,5 +14,10 @@ public class ProjectUpdateForm
     [Column(TypeName = "date")]
     public DateTime EndDate { get; set; }
 
- 
+    public int CustomerId { get; set; }
+    public int StatusId { get; set; }
+    public int UserId { get; set; }
+    public int ProductId { get; set; }
+
+
 }

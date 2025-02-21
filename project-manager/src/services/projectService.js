@@ -15,9 +15,53 @@ export const getAllProjects = async () => {
 };
 
 export const getProjectById = async (id) => {
-    const response = await fetch(`/api/projects/${id}`);
+    const response = await fetch(`https://localhost:7120/api/project/${id}`);
     const data = await response.json();
     return data;
+  };
+
+  // Hämta alla kunder
+export const getCustomers = async () => {
+    try {
+      const response = await axios.get("https://localhost:7120/api/project/customers");
+      return response.data; // Returnera listan med kunder
+    } catch (error) {
+      console.error("Error fetching customers", error);
+      throw error;
+    }
+  };
+  
+  // Hämta alla produkter
+  export const getProducts = async () => {
+    try {
+      const response = await axios.get("https://localhost:7120/api/project/products");
+      console.log('Fetched products:', response.data);  // Logga för att se datat
+      return response.data.result; // Returnera data
+    } catch (error) {
+      console.error("Error fetching products", error);
+      throw error;
+    }
+  };
+  
+  // Hämta alla användare
+  export const getUsers = async () => {
+    try {
+      const response = await axios.get("https://localhost:7120/api/project/users");
+      return response.data; // Returnera listan med användare
+    } catch (error) {
+      console.error("Error fetching users", error);
+      throw error;
+    }
+  };
+
+  export const getStatuses = async () => {
+    try {
+      const response = await axios.get("https://localhost:7120/api/project/statuses");
+      return response.data; 
+    } catch (error) {
+      console.error("Error fetching statuses", error);
+      throw error;
+    }
   };
 
 // Skapa ett nytt projekt
