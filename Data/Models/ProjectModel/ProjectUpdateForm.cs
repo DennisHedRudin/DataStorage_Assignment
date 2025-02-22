@@ -5,7 +5,7 @@ namespace Data.Models.ProjectModel;
 
 public class ProjectUpdateForm
 {
-    public string Title { get; set; } = null!;
+    public string? Title { get; set; }
     public string? Description { get; set; }
 
     [Column(TypeName = "date")]

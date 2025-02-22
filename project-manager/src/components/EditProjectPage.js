@@ -86,7 +86,7 @@ const EditProjectPage = () => {
       <form onSubmit={handleUpdate}>
         {/* Gör titelfältet redigerbart och krävs */}
         <label>
-          Project Title:
+        <p>Project Title:</p>
           <input
             type="text"
             value={project.title}
@@ -96,15 +96,15 @@ const EditProjectPage = () => {
         </label>
 
         <label>
-          Description:
-          <textarea
+        <p>Description:</p>
+          <input
             value={project.description}
             onChange={(e) => setProject({ ...project, description: e.target.value })}            
           />
         </label>
 
         <label>
-          Start Date:
+        <p>Start Date:</p>
           <input
             type="date"
             value={project.startDate}
@@ -114,7 +114,7 @@ const EditProjectPage = () => {
         </label>
 
         <label>
-          End Date:
+        <p>End Date:</p>
           <input
             type="date"
             value={project.endDate}
@@ -124,7 +124,7 @@ const EditProjectPage = () => {
         </label>
 
         <label>
-          Customer:
+        <p>Customer:</p>
           <select
             value={selectedCustomer}
             onChange={(e) => setSelectedCustomer(e.target.value)}
@@ -140,7 +140,7 @@ const EditProjectPage = () => {
         </label>
 
         <label>
-          Product:
+        <p>Product:</p>
           <select
             value={selectedProduct}
             onChange={(e) => setSelectedProduct(e.target.value)}
@@ -156,7 +156,7 @@ const EditProjectPage = () => {
         </label>
 
         <label>
-          User:
+        <p>User:</p>
           <select
             value={selectedUser}
             onChange={(e) => setSelectedUser(e.target.value)}
@@ -172,7 +172,7 @@ const EditProjectPage = () => {
         </label>
 
         <label>
-          Status:
+        <p>Status:</p>
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
@@ -190,12 +190,16 @@ const EditProjectPage = () => {
         <button type="submit">Update Project</button>
       </form>
 
+      <div className="homebtn">
       <button>
                     <Link to={"/"}>Home Page</Link>
       </button>  
       <button>
                     <Link to="/projects">View Projects</Link>
       </button> 
+      </div>
+
+     
     </div>
   );
 };
