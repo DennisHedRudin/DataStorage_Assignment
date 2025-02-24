@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Denni\\source\\repos\\DataStorage_Assignment\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E951D7DA-ADB4-4B95-9D1E-A66D4E2F2B1D}|Data\\Data.csproj|c:\\users\\denni\\source\\repos\\datastorage_assignment\\data\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E951D7DA-ADB4-4B95-9D1E-A66D4E2F2B1D}|Data\\Data.csproj|solutionrelative:data\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1002AA2D-EE5C-4688-A6D0-3ACE0F41C9EC}|DataStorageAPI\\DataStorageAPI.csproj|c:\\users\\denni\\source\\repos\\datastorage_assignment\\datastorageapi\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1002AA2D-EE5C-4688-A6D0-3ACE0F41C9EC}|DataStorageAPI\\DataStorageAPI.csproj|solutionrelative:datastorageapi\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -20,10 +24,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E951D7DA-ADB4-4B95-9D1E-A66D4E2F2B1D}|Data\\Data.csproj|c:\\users\\denni\\source\\repos\\datastorage_assignment\\data\\contexts\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E951D7DA-ADB4-4B95-9D1E-A66D4E2F2B1D}|Data\\Data.csproj|solutionrelative:data\\contexts\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E951D7DA-ADB4-4B95-9D1E-A66D4E2F2B1D}|Data\\Data.csproj|c:\\users\\denni\\source\\repos\\datastorage_assignment\\data\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E951D7DA-ADB4-4B95-9D1E-A66D4E2F2B1D}|Data\\Data.csproj|solutionrelative:data\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E951D7DA-ADB4-4B95-9D1E-A66D4E2F2B1D}|Data\\Data.csproj|c:\\users\\denni\\source\\repos\\datastorage_assignment\\data\\models\\projectmodel\\projectregistrationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,7 +45,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -53,7 +53,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ProjectUpdateForm.cs",
               "DocumentMoniker": "C:\\Users\\Denni\\source\\repos\\DataStorage_Assignment\\Data\\Models\\ProjectModel\\ProjectUpdateForm.cs",
               "RelativeDocumentMoniker": "Data\\Models\\ProjectModel\\ProjectUpdateForm.cs",
@@ -66,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "dbo.Projects.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__PROJECTS_DATA_LOCAL_DATABASE.MDF/True/SqlTable/dbo.Projects.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/C__PROJECTS_DATA_LOCAL_DATABASE.MDF/True/SqlTable/dbo.Projects.sql",
@@ -75,19 +75,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "ProjectService.cs",
               "DocumentMoniker": "C:\\Users\\Denni\\source\\repos\\DataStorage_Assignment\\Data\\Services\\ProjectService.cs",
               "RelativeDocumentMoniker": "Data\\Services\\ProjectService.cs",
               "ToolTip": "C:\\Users\\Denni\\source\\repos\\DataStorage_Assignment\\Data\\Services\\ProjectService.cs",
               "RelativeToolTip": "Data\\Services\\ProjectService.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAAAEMAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwEMAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T11:48:04.372Z"
+              "WhenOpened": "2025-02-21T11:48:04.372Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "DataContext.cs",
               "DocumentMoniker": "C:\\Users\\Denni\\source\\repos\\DataStorage_Assignment\\Data\\Contexts\\DataContext.cs",
               "RelativeDocumentMoniker": "Data\\Contexts\\DataContext.cs",
@@ -99,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ProjectFactory.cs",
               "DocumentMoniker": "C:\\Users\\Denni\\source\\repos\\DataStorage_Assignment\\Data\\Factories\\ProjectFactory.cs",
               "RelativeDocumentMoniker": "Data\\Factories\\ProjectFactory.cs",
@@ -123,13 +124,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ProjectController.cs",
               "DocumentMoniker": "C:\\Users\\Denni\\source\\repos\\DataStorage_Assignment\\DataStorageAPI\\Controllers\\ProjectController.cs",
               "RelativeDocumentMoniker": "DataStorageAPI\\Controllers\\ProjectController.cs",
               "ToolTip": "C:\\Users\\Denni\\source\\repos\\DataStorage_Assignment\\DataStorageAPI\\Controllers\\ProjectController.cs",
               "RelativeToolTip": "DataStorageAPI\\Controllers\\ProjectController.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAADwv4gAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAIgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-20T12:27:58.767Z",
               "EditorCaption": ""
